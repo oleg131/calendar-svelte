@@ -7,20 +7,26 @@
 
     export let startDate, markedDays;
 
-    // Generate days
-    let days = [];
-    for (
-        var m = startDate;
-        isBefore(m, addMonths(startDate, 1));
-        m = addDays(m, 1)
-    ) {
-        days.push(m);
+    function generateDays(startDate) {
+        let days = [];
+        for (
+            var m = startDate;
+            isBefore(m, addMonths(startDate, 1));
+            m = addDays(m, 1)
+        ) {
+            days.push(m);
+        }
+        // Fill in weekdays from other months
+        var nBefore = getDay(days[0]);
+        var nAfter = getDay(6 - days[days.length - 1]);
+        days.unshift(...[...Array(nBefore).keys()].map(() => null));
+        days.push(...[...Array(nAfter).keys()].map(() => null));
+
+        return days;
     }
-    // Fill in weekdays from other months
-    var nBefore = getDay(days[0]);
-    var nAfter = getDay(6 - days[days.length - 1]);
-    days.unshift(...[...Array(nBefore).keys()].map(() => null));
-    days.push(...[...Array(nAfter).keys()].map(() => null));
+
+    // Generate days
+    $: days = generateDays(startDate);
 </script>
 
 <style>

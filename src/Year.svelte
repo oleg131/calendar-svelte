@@ -15,7 +15,7 @@
     }
 
     // Generate months
-    let months = Array.from(Array(12).keys()).map((i) =>
+    $: months = Array.from(Array(12).keys()).map((i) =>
         addMonths(new Date(year, 0, 1), i)
     );
 </script>

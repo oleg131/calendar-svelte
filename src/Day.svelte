@@ -9,13 +9,18 @@
 
     let ref;
 
-    $: className = markedDays ? "day" : "day";
-    $: if (markedDays.includes(format(day, "yyyy-MM-dd"))) {
-        className = className + " day-highlight";
+    function generateClassName(markedDays) {
+        let className = "day";
+        if (markedDays.includes(format(day, "yyyy-MM-dd"))) {
+            className = className + " day-highlight";
+        }
+        if (format(day, "yyyy-MM-dd") === CURRENT_DAY) {
+            className += " day-current";
+        }
+        return className;
     }
-    $: if (format(day, "yyyy-MM-dd") === CURRENT_DAY) {
-        className += " day-current";
-    }
+
+    $: className = generateClassName(markedDays);
 
     function onClick(day) {
         day = format(day, "yyyy-MM-dd");
