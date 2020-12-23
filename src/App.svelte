@@ -1,32 +1,32 @@
 <script>
-	import { format } from "date-fns";
+    import { format } from "date-fns";
 
-	import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+    import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-	import Year from "./Year.svelte";
+    import Year from "./Year.svelte";
 
-	import { loadMarkedDays, saveMarkedDays } from "./utils";
+    import { loadMarkedDays, saveMarkedDays } from "./utils";
 
-	let markedDays = loadMarkedDays();
+    let markedDays = loadMarkedDays();
 
-	$: {
-		saveMarkedDays(markedDays);
-	}
+    $: {
+        saveMarkedDays(markedDays);
+    }
 
-	let year = parseInt(format(new Date(), "yyyy"));
+    let year = parseInt(format(new Date(), "yyyy"));
 </script>
 
 <style>
-	.main {
-		text-align: center;
-	}
-	.container {
-		max-width: 700px !important;
-	}
+    .main {
+        text-align: center;
+    }
+    .container {
+        max-width: 700px !important;
+    }
 </style>
 
 <div class="main">
-	<div class="container">
-		<Year {year} bind:markedDays />
-	</div>
+    <div class="container">
+        <Year {year} bind:markedDays />
+    </div>
 </div>

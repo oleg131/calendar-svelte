@@ -2,6 +2,8 @@
 
 # [Demo](https://calendar.orchardroad.space/)
 
+(This is a rewrite of the `Calendar` repository using Svelte; the demo above is still in React)
+
 Simple calendar app to track day events (days you worked out, days you took your medicine etc.)
 
 Click on the day to mark or unmark it.
